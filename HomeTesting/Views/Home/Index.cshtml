@@ -1,0 +1,41 @@
+﻿@model HomeTesting.Models.MainViewModel
+
+
+<text style="color:white">@ViewBag.Flu</text>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <br />
+
+        <button class="btn btn-success" onclick="$('#dataArea').toggle();">Show/Hide List</button> 
+        @{if (TempData["Added"] != null)
+            {
+                    <B style="color:red">@TempData["Added"].ToString()</B>
+            }
+        }
+        <div id="dataArea" style="display:none">
+            @{ if (Model.Area == "Home Testing")
+                {
+                    if (ViewBag.Person != null)
+                    {
+                        Html.RenderPartial("~/Views/FindStaff/_FoundStaff.cshtml", Model);
+                    }
+                    Html.RenderPartial("~/Views/Staff/_StaffList.cshtml", Model);
+                    <hr />
+                    Html.RenderPartial("~/Views/Staff/_Tests.cshtml", Model);
+                }
+                
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        if ('@ViewBag.ShowData' == "true") {
+            $('#dataArea').show();
+        }
+    });
+</script>
+
+
+

@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FluJabModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_AssignmentCats">
+          <Key>
+            <PropertyRef Name="AssCatID" />
+          </Key>
+          <Property Name="AssCatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Catergory" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_AssignmentStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignmentStatus" Type="varchar" MaxLength="500" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Audit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="nvarchar" MaxLength="150" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="150" />
+          <Property Name="AddedBy" Type="varchar" MaxLength="550" />
+          <Property Name="AddedDate" Type="datetime2" Precision="7" />
+          <Property Name="Notes" Type="varchar(max)" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="VaccStatus" Type="varchar(max)" />
+          <Property Name="VaccStatusBy" Type="varchar(max)" />
+          <Property Name="VaccLocation" Type="varchar(max)" />
+          <Property Name="VaccName" Type="varchar(max)" />
+          <Property Name="VaccBatch" Type="varchar(max)" />
+          <Property Name="VaccDate" Type="datetime2" Precision="7" />
+          <Property Name="DecReason" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_DeclinedReasons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeclinedReason" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Departments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Divisions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Division" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_FacingGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacingGroup" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_HighRiskAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RiskArea" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_HomeTesting">
+          <Key>
+            <PropertyRef Name="HTId" />
+          </Key>
+          <Property Name="HTId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="TestingKitIssued" Type="bit" Nullable="false" />
+          <Property Name="LotNumber" Type="varchar(max)" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="IssuedBy" Type="varchar" MaxLength="500" />
+          <Property Name="IssueDate" Type="datetime2" Precision="7" />
+          <Property Name="Ward" Type="varchar(max)" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="ExpiryDate" Type="datetime2" Precision="7" />
+          <Property Name="FirstName" Type="varchar(max)" />
+          <Property Name="Surname" Type="varchar(max)" />
+          <Property Name="Division" Type="varchar(max)" />
+          <Property Name="Department" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Professions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Profession" Type="varchar" MaxLength="550" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_StaffGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffGroup" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_VaccBatch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpiryDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_Vaccinators">
+          <Key>
+            <PropertyRef Name="VacID" />
+          </Key>
+          <Property Name="VacID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaccName" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_VaccManus">
+          <Key>
+            <PropertyRef Name="VacManID" />
+          </Key>
+          <Property Name="VacManID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaccManName" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStaff">
+          <Key>
+            <PropertyRef Name="EmployeeNumber" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" MaxLength="10" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Division" Type="nvarchar" MaxLength="100" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="AssignmentStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="StaffGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" />
+          <Property Name="AssignmentCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Paypoint" Type="nvarchar" MaxLength="50" />
+          <Property Name="CostCentre" Type="nvarchar" MaxLength="10" />
+          <Property Name="Profession" Type="nvarchar" MaxLength="50" />
+          <Property Name="VaccinationStatus" Type="nvarchar" MaxLength="250" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="555" />
+          <Property Name="VaccinationStatusBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="VaccinationLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="VaccinatorName" Type="nvarchar" MaxLength="250" />
+          <Property Name="VaccinatorDateTime" Type="datetime2" Precision="7" />
+          <Property Name="VaccinationBatchNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="AddedByUser" Type="varchar" MaxLength="250" />
+          <Property Name="DateAddedToDB" Type="datetime2" Precision="7" />
+          <Property Name="EditedDate" Type="datetime2" Precision="7" />
+          <Property Name="DeclinedReason" Type="varchar(max)" />
+          <Property Name="FrontLineStaff" Type="bit" />
+          <Property Name="AddedStaffToDB" Type="bit" />
+          <Property Name="ActiveStaff" Type="bit" />
+          <Property Name="AnatomicalSiteOfVaccination" Type="varchar(max)" />
+          <Property Name="HighRisk" Type="bit" />
+          <Property Name="HighRiskArea" Type="varchar(max)" />
+          <Property Name="PatientFacingGroup" Type="varchar(max)" />
+          <Property Name="VerbalConstent" Type="varchar(max)" />
+          <Property Name="AreYouWellToday" Type="bit" />
+          <Property Name="AllergicToEggs" Type="bit" />
+          <Property Name="Allergies" Type="bit" />
+          <Property Name="ProblemsFromAFluInjection" Type="bit" />
+          <Property Name="ConditionAffectingImmune" Type="bit" />
+          <Property Name="VaccExpiryDate" Type="varchar" MaxLength="250" />
+          <Property Name="VaccManu" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="FluJabModelStoreContainer">
+          <EntitySet Name="tbl_AssignmentCats" EntityType="Self.tbl_AssignmentCats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AssignmentStatus" EntityType="Self.tbl_AssignmentStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Audit" EntityType="Self.tbl_Audit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DeclinedReasons" EntityType="Self.tbl_DeclinedReasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Departments" EntityType="Self.tbl_Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Divisions" EntityType="Self.tbl_Divisions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FacingGroups" EntityType="Self.tbl_FacingGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_HighRiskAreas" EntityType="Self.tbl_HighRiskAreas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_HomeTesting" EntityType="Self.tbl_HomeTesting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Professions" EntityType="Self.tbl_Professions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_StaffGroups" EntityType="Self.tbl_StaffGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VaccBatch" EntityType="Self.tbl_VaccBatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Vaccinators" EntityType="Self.tbl_Vaccinators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VaccManus" EntityType="Self.tbl_VaccManus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStaff" EntityType="Self.tblStaff" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FluJabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FluJabEntities2" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="tbl_AssignmentStatus" EntityType="FluJabModel.tbl_AssignmentStatus" />
+          <EntitySet Name="tblStaffs" EntityType="FluJabModel.tblStaff" />
+          <EntitySet Name="tbl_Divisions" EntityType="FluJabModel.tbl_Divisions" />
+          <EntitySet Name="tbl_Departments" EntityType="FluJabModel.tbl_Departments" />
+          <EntitySet Name="tbl_Professions" EntityType="FluJabModel.tbl_Professions" />
+          <EntitySet Name="tbl_DeclinedReasons" EntityType="FluJabModel.tbl_DeclinedReasons" />
+          <EntitySet Name="tbl_Audit" EntityType="FluJabModel.tbl_Audit" />
+          <EntitySet Name="tbl_StaffGroups" EntityType="FluJabModel.tbl_StaffGroups" />
+          <EntitySet Name="tbl_FacingGroups" EntityType="FluJabModel.tbl_FacingGroups" />
+          <EntitySet Name="tbl_HighRiskAreas" EntityType="FluJabModel.tbl_HighRiskAreas" />
+          <EntitySet Name="tbl_Vaccinators" EntityType="FluJabModel.tbl_Vaccinators" />
+          <EntitySet Name="tbl_AssignmentCats" EntityType="FluJabModel.tbl_AssignmentCats" />
+          <EntitySet Name="tbl_VaccManus" EntityType="FluJabModel.tbl_VaccManus" />
+          <EntitySet Name="tbl_VaccBatch" EntityType="FluJabModel.tbl_VaccBatch" />
+          <EntitySet Name="tbl_HomeTesting" EntityType="FluJabModel.tbl_HomeTesting" />
+        </EntityContainer>
+        <EntityType Name="tbl_AssignmentStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignmentStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblStaff">
+          <Key>
+            <PropertyRef Name="EmployeeNumber" />
+          </Key>
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AssignmentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StaffGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AssignmentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Paypoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CostCentre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinationStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="555" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinationStatusBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinationLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinatorName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinatorDateTime" Type="DateTime" Precision="7" />
+          <Property Name="VaccinationBatchNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AddedByUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DateAddedToDB" Type="DateTime" Precision="7" />
+          <Property Name="EditedDate" Type="DateTime" Precision="7" />
+          <Property Name="DeclinedReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FrontLineStaff" Type="Boolean" />
+          <Property Name="AddedStaffToDB" Type="Boolean" />
+          <Property Name="ActiveStaff" Type="Boolean" />
+          <Property Name="AnatomicalSiteOfVaccination" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HighRisk" Type="Boolean" />
+          <Property Name="HighRiskArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PatientFacingGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VerbalConstent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AreYouWellToday" Type="Boolean" />
+          <Property Name="AllergicToEggs" Type="Boolean" />
+          <Property Name="Allergies" Type="Boolean" />
+          <Property Name="ProblemsFromAFluInjection" Type="Boolean" />
+          <Property Name="ConditionAffectingImmune" Type="Boolean" />
+          <Property Name="VaccExpiryDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="VaccManu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Divisions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Division" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Departments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Professions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Profession" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_DeclinedReasons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeclinedReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Audit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="AddedDate" Type="DateTime" Precision="7" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VaccStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VaccStatusBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VaccLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VaccName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VaccBatch" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VaccDate" Type="DateTime" Precision="7" />
+          <Property Name="DecReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_StaffGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_FacingGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacingGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_HighRiskAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RiskArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Vaccinators">
+          <Key>
+            <PropertyRef Name="VacID" />
+          </Key>
+          <Property Name="VacID" Type="Int32" Nullable="false" />
+          <Property Name="VaccName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_AssignmentCats">
+          <Key>
+            <PropertyRef Name="AssCatID" />
+          </Key>
+          <Property Name="AssCatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Catergory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_VaccManus">
+          <Key>
+            <PropertyRef Name="VacManID" />
+          </Key>
+          <Property Name="VacManID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VaccManName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_VaccBatch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_HomeTesting">
+          <Key>
+            <PropertyRef Name="HTId" />
+          </Key>
+          <Property Name="HTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TestingKitIssued" Type="Boolean" Nullable="false" />
+          <Property Name="LotNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="IssuedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IssueDate" Type="DateTime" Precision="7" />
+          <Property Name="Ward" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="7" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Division" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FluJabModelStoreContainer" CdmEntityContainer="FluJabEntities2" >
+          <EntitySetMapping Name="tbl_AssignmentStatus">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_AssignmentStatus">
+              <MappingFragment StoreEntitySet="tbl_AssignmentStatus">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="AssignmentStatus" ColumnName="AssignmentStatus" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStaffs">
+            <EntityTypeMapping TypeName="FluJabModel.tblStaff">
+              <MappingFragment StoreEntitySet="tblStaff">
+                <ScalarProperty Name="VaccManu" ColumnName="VaccManu" />
+                <ScalarProperty Name="VaccExpiryDate" ColumnName="VaccExpiryDate" />
+                <ScalarProperty Name="ConditionAffectingImmune" ColumnName="ConditionAffectingImmune" />
+                <ScalarProperty Name="ProblemsFromAFluInjection" ColumnName="ProblemsFromAFluInjection" />
+                <ScalarProperty Name="Allergies" ColumnName="Allergies" />
+                <ScalarProperty Name="AllergicToEggs" ColumnName="AllergicToEggs" />
+                <ScalarProperty Name="AreYouWellToday" ColumnName="AreYouWellToday" />
+                <ScalarProperty Name="VerbalConstent" ColumnName="VerbalConstent" />
+                <ScalarProperty Name="PatientFacingGroup" ColumnName="PatientFacingGroup" />
+                <ScalarProperty Name="HighRiskArea" ColumnName="HighRiskArea" />
+                <ScalarProperty Name="HighRisk" ColumnName="HighRisk" />
+                <ScalarProperty Name="AnatomicalSiteOfVaccination" ColumnName="AnatomicalSiteOfVaccination" />
+                <ScalarProperty Name="ActiveStaff" ColumnName="ActiveStaff" />
+                <ScalarProperty Name="AddedStaffToDB" ColumnName="AddedStaffToDB" />
+                <ScalarProperty Name="FrontLineStaff" ColumnName="FrontLineStaff" />
+                <ScalarProperty Name="DeclinedReason" ColumnName="DeclinedReason" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="DateAddedToDB" ColumnName="DateAddedToDB" />
+                <ScalarProperty Name="AddedByUser" ColumnName="AddedByUser" />
+                <ScalarProperty Name="VaccinationBatchNumber" ColumnName="VaccinationBatchNumber" />
+                <ScalarProperty Name="VaccinatorDateTime" ColumnName="VaccinatorDateTime" />
+                <ScalarProperty Name="VaccinatorName" ColumnName="VaccinatorName" />
+                <ScalarProperty Name="VaccinationLocation" ColumnName="VaccinationLocation" />
+                <ScalarProperty Name="VaccinationStatusBy" ColumnName="VaccinationStatusBy" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="VaccinationStatus" ColumnName="VaccinationStatus" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="CostCentre" ColumnName="CostCentre" />
+                <ScalarProperty Name="Paypoint" ColumnName="Paypoint" />
+                <ScalarProperty Name="AssignmentCategory" ColumnName="AssignmentCategory" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="StaffGroup" ColumnName="StaffGroup" />
+                <ScalarProperty Name="AssignmentStatus" ColumnName="AssignmentStatus" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Divisions">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_Divisions">
+              <MappingFragment StoreEntitySet="tbl_Divisions">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Departments">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_Departments">
+              <MappingFragment StoreEntitySet="tbl_Departments">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Professions">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_Professions">
+              <MappingFragment StoreEntitySet="tbl_Professions">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DeclinedReasons">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_DeclinedReasons">
+              <MappingFragment StoreEntitySet="tbl_DeclinedReasons">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DeclinedReason" ColumnName="DeclinedReason" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Audit">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_Audit">
+              <MappingFragment StoreEntitySet="tbl_Audit">
+                <ScalarProperty Name="DecReason" ColumnName="DecReason" />
+                <ScalarProperty Name="VaccDate" ColumnName="VaccDate" />
+                <ScalarProperty Name="VaccBatch" ColumnName="VaccBatch" />
+                <ScalarProperty Name="VaccName" ColumnName="VaccName" />
+                <ScalarProperty Name="VaccLocation" ColumnName="VaccLocation" />
+                <ScalarProperty Name="VaccStatusBy" ColumnName="VaccStatusBy" />
+                <ScalarProperty Name="VaccStatus" ColumnName="VaccStatus" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_StaffGroups">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_StaffGroups">
+              <MappingFragment StoreEntitySet="tbl_StaffGroups">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StaffGroup" ColumnName="StaffGroup" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_FacingGroups">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_FacingGroups">
+              <MappingFragment StoreEntitySet="tbl_FacingGroups">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="FacingGroup" ColumnName="FacingGroup" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_HighRiskAreas">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_HighRiskAreas">
+              <MappingFragment StoreEntitySet="tbl_HighRiskAreas">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RiskArea" ColumnName="RiskArea" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Vaccinators">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_Vaccinators">
+              <MappingFragment StoreEntitySet="tbl_Vaccinators">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="VaccName" ColumnName="VaccName" />
+                <ScalarProperty Name="VacID" ColumnName="VacID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AssignmentCats">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_AssignmentCats">
+              <MappingFragment StoreEntitySet="tbl_AssignmentCats">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Catergory" ColumnName="Catergory" />
+                <ScalarProperty Name="AssCatID" ColumnName="AssCatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VaccManus">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_VaccManus">
+              <MappingFragment StoreEntitySet="tbl_VaccManus">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="VaccManName" ColumnName="VaccManName" />
+                <ScalarProperty Name="VacManID" ColumnName="VacManID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VaccBatch">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_VaccBatch">
+              <MappingFragment StoreEntitySet="tbl_VaccBatch">
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_HomeTesting">
+            <EntityTypeMapping TypeName="FluJabModel.tbl_HomeTesting">
+              <MappingFragment StoreEntitySet="tbl_HomeTesting">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Ward" ColumnName="Ward" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
+                <ScalarProperty Name="TestingKitIssued" ColumnName="TestingKitIssued" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="HTId" ColumnName="HTId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

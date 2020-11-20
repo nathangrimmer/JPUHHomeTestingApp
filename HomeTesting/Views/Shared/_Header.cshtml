@@ -1,0 +1,51 @@
+﻿<header class="main-header">  
+    <a href="@Url.Action("Index", "Home")" class="logo">       
+        <span class="logo-mini"><b></b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span style="font-size:20px"><i class="fa fa-hospital-o"></i> @ViewBag.Area </span>     
+    </a>  
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"onclick="HideLogo();">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+               
+                <li class="dropdown messages-menu">
+                    @if (User.Identity.Name.Length > 0)
+                    {
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="$('#userMenu').toggle();">
+                            <i class="fa fa-user"> <span class="hidden-xs" style="font-family:Arial"> @User.Identity.Name </span></i>
+                            
+                        </a>
+                    }
+                    <ul class="dropdown-menu" id="userMenu" style="display:none" onclick="$('#userMenu').toggle();">
+                        <li class="user-header">
+                            <p>Home Testing</p>
+                        </li>
+                        <li class="user-body">
+                            <div class="row">
+
+                            </div>
+                            <!-- /.row -->
+                        </li>
+                        <li class="user-footer">
+                            @*<text style="padding-left:5px">Viewing ward:<b> @ViewBag.WardShortNumber</b> </text>*@
+                            <br />
+                            <text style="padding-left:5px">Logged in since:<b> @ViewBag.LoginTime </b></text>
+                            <div class="pull-right" style="padding:20px">
+                                @Html.ActionLink("Logout", "Logout", "Home", new { @class = "btn btn-default btn-flat" })
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                @* END User Account Menu *@
+                @* BEGIN Control Sidebar Toggle Button *@
+                <li>
+                    @*<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>*@
+                </li>
+                @* END Control Sidebar Toggle Button *@
+            </ul>
+        </div>
+    </nav>
+</header>

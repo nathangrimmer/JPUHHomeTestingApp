@@ -1,0 +1,142 @@
+﻿@model HomeTesting.tbl_HomeTesting
+
+<div class="modal-dialog" id="createModalBox" style="width:920px; height:500px; overflow-y:auto">
+    <div class="modal-header">
+
+        <h5> Assign Home Testing Kit to Staff member - @Model.EmployeeNumber <button type="button" style="color:black" class="btn btn-default pull-right" @*data-dismiss="modal"*@ onclick="unSavedVis();">Close</button></h5>
+        <h4 id="unsaved" style="display:none; color:red">You have unsaved changes!</h4>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(x => x.HTId)
+            @Html.HiddenFor(x => x.FirstName)
+            @Html.HiddenFor(x => x.Surname)
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-horizontal">
+                <hr />
+                <div class="alert alert-danger alert-dismissible" id="alertBox" style="display:none; height:70px;">
+                    <h4 class="pull-left"><i class="icon fa fa-ban"></i> Alert!</h4>
+                    <span style="color:white; font-size:14px; font-weight:700; font-family:Arial; border:0PX solid black; padding:5px"> Warning! </span>
+                    <div id="found" style="color:white"></div>
+                </div>
+                <div style="background-color:#298FC2" id="dets">
+                    <h3 style="padding:5PX; color:white; text-align:center">Add Testing Kit Details</h3>
+                </div>
+                <div class="form-group">
+                    <h4 style="font-weight:800">Staff Details</h4>
+                    @Html.Label("Emp No", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", id = "empNo" } })
+                        @Html.ValidationMessageFor(model => model.EmployeeNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.Label("Dept", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-5">
+                        @Html.DropDownListFor(model => model.Ward, (SelectList)ViewBag.Depts, "-Select Type-", new { @class = "form-control", id = "depts" })
+                        @Html.ValidationMessageFor(model => model.Ward, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Lot Number(s)", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.LotNumber, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "empNo1" } })
+                        @Html.ValidationMessageFor(model => model.LotNumber, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.Label("Number of Kits Issued", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "number", id = "empNo" } })
+                        @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Issue Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.IssueDate, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "datepicker" } })
+                        @Html.ValidationMessageFor(model => model.IssueDate, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.Label("Expiry Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "datepicker" } })
+                        @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Comments/Notes", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(model => model.Comments, 3, 9, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-10">
+                        <button type="submit" value="Submit" class="btn btn-default pull-right" id="save" title="Submit"><img src="~/Content/img/saveIcon.png" width="30" height="30" title="Submit" /></button> <button type="button" style="color:black" class="btn btn-default pull-left" data-dismiss="modal" title="Close and Discard"><img src="~/Content/img/closeIcon.jpg" width="30" height="30" title="Close and Discard" /></button>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<script>
+    function unSavedVis() {
+        if ($('#unsaved').is(":visible")) {
+
+            if (confirm("You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?")) {
+                $('#createModal').modal('hide');
+
+            };
+        }
+        else {
+            $('#createModal').modal('hide');
+        };
+    };
+
+    
+    $("#empNo").on("change", function () {
+            var empDatas = { empNo: $("#empNo").val() };
+            $.ajax({
+                url: '@Url.Action("CheckEmpNo", "Staff", new { crn = HttpContext.Current.Request.QueryString["empNo"] })',
+                cache: false,
+                dataType: "json",
+                type: "POST",
+                data: empDatas,
+                success: function (data) {
+
+                    if (data.length > 0) {
+                        $("#found").text(" Please enter another number, this number is already in the database!");
+                        $("#crn").val("");
+                        $("#alertBox").show();
+                        $("#save").hide();
+
+                    }
+                    if (data == "Not found") {
+                        $("#alertBox").hide();
+                        $("#save").show();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    $("#btnSave").show();
+
+                }
+
+            });
+            return false;
+
+    })
+    
+    $(document).ready(function () {
+        $('#depts').select2({
+            width: '100%'
+        });
+    })
+
+
+</script>

@@ -1,0 +1,226 @@
+﻿@model HomeTesting.tbl_HomeTesting
+
+<div class="modal-dialog" id="createModalBox" style="width:920px; height:545px; overflow-y:auto">
+    <div class="modal-header">
+
+        <h5> Add new Staff Member to database <button type="button" style="color:black" class="btn btn-default pull-right" @*data-dismiss="modal"*@ onclick="unSavedVis();">Close</button></h5>
+        <h4 id="unsaved" style="display:none; color:red">You have unsaved changes!</h4>
+
+        @using (Html.BeginForm("AddHomeTestStaff", "Staff",FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-horizontal">
+                <hr />
+                <div class="alert alert-danger alert-dismissible" id="alertBox" style="display:none; height:70px;">
+
+                    <h4 class="pull-left"><i class="icon fa fa-ban"></i> Alert!</h4>
+                    <span style="color:white; font-size:14px; font-weight:700; font-family:Arial; border:0PX solid black; padding:5px"> Warning! </span>
+                    <div id="found" style="color:white"></div>
+
+                </div>
+                <div style="background-color:#298FC2" id="dets">
+                    <h3 style="padding:5PX; color:white; text-align:center">Add staff member</h3>
+                </div>
+                <div class="form-group">
+
+                    <h4 style="font-weight:800">Staff Details</h4>
+                    @Html.Label("Emp No", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "empNo" } })
+                        @Html.ValidationMessageFor(model => model.EmployeeNumber, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    @Html.Label("F/Name", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control",@required="required" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.Label("S/Name", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Division, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top:8px" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Division, (SelectList)ViewBag.Divisions, "-Select Type-", new { @class = "form-control", id = "postType" })
+                            @Html.ValidationMessageFor(model => model.Division, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.Label("Dept", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(model => model.Department, (SelectList)ViewBag.Depts, "-Select Type-", new { @class = "form-control", id = "depts" })
+                            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Lot Number(s)", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.LotNumber, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "empNo1" } })
+                            @Html.ValidationMessageFor(model => model.LotNumber, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.Label("Number of Kits Issued", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "number", id = "empNo" } })
+                            @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Issue Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.IssueDate, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "datepicker" } })
+                            @Html.ValidationMessageFor(model => model.IssueDate, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.Label("Expiry Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control", @required = "required", id = "datepicker" } })
+                            @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Comments/Notes", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Comments, 3, 9, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10">
+                            <button type="submit" value="Submit" class="btn btn-default pull-right" id="save" title="Submit"><img src="~/Content/img/saveIcon.png" width="30" height="30" title="Submit" /></button> <button type="button" style="color:black" class="btn btn-default pull-left" data-dismiss="modal" title="Close and Discard"><img src="~/Content/img/closeIcon.jpg" width="30" height="30" title="Close and Discard" /></button>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                }
+
+            </div>
+
+        </div>
+   
+
+    <script>
+    function unSavedVis() {
+        if ($('#unsaved').is(":visible")) {
+
+            if (confirm("You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?")) {
+                $('#createModal').modal('hide');
+
+            };
+        }
+        else {
+            $('#createModal').modal('hide');
+        };
+    };
+
+    function vaccStatus() {
+        var v = $("#vaccStatusDD option:selected").text();
+        if (v == "Declined") {
+            $("#declinedBox").show();
+            $("#declinedDD").attr("required", "required");
+            $("#fluDetailsDiv").hide();
+            $("#championDiv").hide();
+        }
+        if (v == "Vaccinated") {
+            $("#fluDetailsDiv").show();
+            $("#declinedBox").hide();
+            $("#vaccLoc,#vaccName,#vaccBy,#vaccBatch,#datepicker").attr("required", "required");
+            $("#declinedDD").removeAttr("required");
+
+        }
+
+        if (v == "Not Engaged") {
+            $("#declinedBox").hide();
+            $("#fluDetailsDiv").hide();
+            $("#championDiv").hide();
+            $("#vaccLoc,#vaccName,#vaccBy,#vaccBatch,#datepicker,#probN,#probY,#conN,#conY,#eggN,#eggY,#allgN,#allgY,#wellN,#wellY").removeAttr("required");
+            $("#vaccBy").val("");
+        }
+    }
+    function showAllFluDetails() {
+        var f = $("#vaccBy option:selected").text();
+        if (f == "Champion") {
+            $("#championDiv").show();
+            $("#createModalBox").height(850);
+        }
+        if (f == "Other site(GP etc)") {
+            $("#championDiv").hide();
+            $("#vaccLoc,#vaccName,#vaccBy,#vaccBatch,#datepicker,#probN,#probY,#conN,#conY,#eggN,#eggY,#allgN,#allgY,#wellN,#wellY").removeAttr("required");
+            $("#createModalBox").height(725);
+        }
+    }
+    $("#empNo").on("change", function () {
+            var empDatas = { empNo: $("#empNo").val() };
+            $.ajax({
+                url: '@Url.Action("CheckEmpNo", "Staff", new { crn = HttpContext.Current.Request.QueryString["empNo"] })',
+                cache: false,
+                dataType: "json",
+                type: "POST",
+                data: empDatas,
+                success: function (data) {
+
+                    if (data.length > 0) {
+                        $("#found").text(" Please enter another number, this number is already in the database!");
+                        $("#crn").val("");
+                        $("#alertBox").show();
+                        $("#save").hide();
+
+                    }
+                    if (data == "Not found") {
+                        $("#alertBox").hide();
+                        $("#save").show();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    $("#btnSave").show();
+
+                }
+
+            });
+            return false;
+
+    })
+    $("#vaccBat").on("change", function () {
+            var vacDatas = { vacNo: $("#vaccBat").val() };
+            $.ajax({
+                url: '@Url.Action("GetVaccExp", "Staff", new { crn = HttpContext.Current.Request.QueryString["vacNo"] })',
+                cache: false,
+                dataType: "json",
+                type: "POST",
+                data: vacDatas,
+                success: function (data) {
+
+                    if (data.length > 0) {
+                        $("#vacExp").val(data);
+
+                    }
+                    if (data == "Not found") {
+                        $("#alertBox").hide();
+                        $("#save").show();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    $("#btnSave").show();
+
+                }
+
+            });
+            return false;
+
+    })
+    $(document).ready(function () {
+        $('#depts').select2({
+            width: '100%'
+        });
+    })
+
+
+    </script>

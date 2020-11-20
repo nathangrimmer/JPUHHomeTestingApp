@@ -1,0 +1,107 @@
+﻿@model HomeTesting.Models.MainViewModel
+<script>
+    $(document).ready(function () {
+        $('#demoTable,#demoTable2').DataTable({
+            "lengthMenu": [10, 50, 75, 100],
+            "ordering": false,
+        });
+    });
+
+</script>
+  @Html.ActionLink("Refresh Data", "Index", "Home", new { @class = "pull-right", @style = "margin-left:20px;" })  @Html.ActionLink("Show all records", "Index", "Home", new { sur = "All Records" }, new { @class = "pull-right", @title = "This will take a while!", @onclick = "$('#showing').hide();$('#loading').show();" })
+<h5 id="showing">Showing first 1250 staff records</h5>
+<h5 id="showingAll" style="display:none">Showing all staff records</h5>
+<h5 id="loading" style="color:red; display:none">Loading all staff records.......</h5>
+<div style="padding:10px">
+    <table class="table table-bordered table-striped table-hover table-condensed" style="font-size:smaller; border:1px solid black; padding:3px" id="demoTable">
+        <thead style="background-color:cornflowerblue">
+            <tr>
+                <th>
+                    @Html.DisplayName("EmpNo")
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Dept")
+                </th>
+                <th>
+                    @Html.DisplayName("Role")
+                </th>
+                <th>
+                    @Html.DisplayName("Records")
+                </th>
+
+
+                <th style="font-size:10px;">
+                    Add Kit
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.tblStaffs.OrderBy(x => x.LastName))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.EmployeeNumber)
+                    </td>
+                    <td style="font-weight:800">
+                        @{ var name = item.FirstName + " " + item.LastName;
+                        }
+                        @Html.DisplayFor(model => name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Role)
+                    </td>
+                    <td>
+                        @{ int kitC = 0;
+                            kitC = Model.TestingKits.Where(x => x.EmployeeNumber == item.EmployeeNumber).Count();
+
+                        }
+                        @Html.DisplayFor(model => kitC)
+                    </td>
+
+                    <td>
+                        <a class="createModal" id="btn" title="Add Home Testig kit data" onclick="createModal('createContact');" href="@Url.Action("EditRecordHT", "Staff", new { id = item.EmployeeNumber })"><i class="fa fa-cubes"></i></a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+        <tfoot style="background-color:cornflowerblue">
+            <tr>
+                <th>
+                    @Html.DisplayName("EmpNo")
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Dept")
+                </th>
+                <th>
+                    @Html.DisplayName("Role")
+                </th>
+                <th>
+                    @Html.DisplayName("Records")
+                </th>
+
+                <th style="font-size:10px;">
+                    Add Kit
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        if ('@ViewBag.AllRecord' == "true") {
+            $('#showing').hide();
+            $('#showingAll').show();
+        }
+    })
+</script>

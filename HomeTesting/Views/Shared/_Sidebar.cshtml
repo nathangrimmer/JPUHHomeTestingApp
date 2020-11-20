@@ -1,0 +1,83 @@
+﻿@using HomeTesting.Controllers
+@model HomeTesting.Models.MainViewModel
+
+<aside class="main-sidebar" id="patView">
+    <section class="sidebar">
+        @* BEGIN Search *@
+        @using (Html.BeginForm("Index", "Home"))
+        {
+
+            <div class="input-group">
+                <input type="text" name="sur" class="form-control" placeholder="Search Person by Surname">
+                <span class="input-group-btn">
+                    <button type="submit" name="sur" id="search-btn" class="createModal btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        }
+
+        <ul class="sidebar-menu" id="patDemo" style="color:white; display:none">
+            <li class="fa fa-link">
+                <span>
+
+
+                </span>
+            </li>
+        </ul>
+        @* END Search *@
+        @* BEGIN Menu *@
+        <ul class="sidebar-menu" id="patSide" style="display:inline">
+
+
+            <li class="header">Navigation</li>
+
+            <li><a class="createModal" href="@Url.Action("AddStaff", "Staff")" onclick="createModal('createContact');"><i class="fa fa-plus-square-o"></i> <span title="Use this to add new staff to the database....">Add a new staff member</span></a></li>
+            
+            
+
+        </ul>
+
+        @* END Menu *@
+    </section>
+    <footer style="bottom: 0; position:absolute; padding:15px; display:inline" id="footer">
+        <a class="feedback" style="padding-left:10px" name="Send Feedback" href="@Url.Action("Feedback", "Home")">
+            <i class="fa fa-comments-o"><text style="font-family:Arial" class="fa fa-comments-o">Send Feedback</text></i>
+        </a>
+        @*<a class="release" href="~/Content/ReleaseNotes/ReleaseNotesV1.1.txt" target="_blank"> <i class="fa fa-book" title="RELEASE NOTES/WHATS NEW"></i></a>*@
+        <br />
+        <text style="color:white">@TempData["Feedback"]</text>
+        <img src="~/Content/img/SDI_LOGO_narrow.jpg" />
+        <br />
+        <strong style="color:white; font-size:x-small">&copy; @DateTime.Now.Date.ToShortDateString()-James Paget Hospital</strong>
+        <br />
+        <strong style="color:white; font-size:x-small">Version: V2 - 04/09/20</strong>
+    </footer>
+</aside>
+
+<script>
+    function HideLogo() {
+        $('#footer').toggle("slow");
+
+    }
+    $('.feedback').click(function (e) {
+
+        $('.feedback').attr('data-target', '#feedback');
+
+        $('.feedback').attr('data-toggle', 'modal');
+
+
+    });
+</script>
+<div id="feedback" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div id="editContainer" class="modal-content">
+
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

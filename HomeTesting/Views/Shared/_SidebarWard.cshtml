@@ -1,0 +1,55 @@
+﻿@using FluDatabase.Controllers
+@model FluDatabase.Controllers.HomeController
+
+<aside class="main-sidebar" id="wardView">
+    <section class="sidebar">
+        @* BEGIN Search *@
+
+       
+        @* END Search *@
+        @* BEGIN Menu *@
+        <ul class="sidebar-menu">
+            <li class="header">Applications - Ward</li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.Index) ? "active" : "")">
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>LINK</span></a>
+            </li>
+           
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Multilevel</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                
+                <ul class="treeview-menu">
+                    <li><a href="#">Link in level 2</a></li>
+                    <li><a href="#">Link in level 2</a></li>
+
+                </ul>
+                
+            </li>
+        </ul>
+        
+        @* END Menu *@
+    </section>
+    
+</aside>
+
+<script type="text/javascript">
+
+    
+    function HideLogo() {
+        $('#footer').toggle("slow");
+
+    }
+    $('.feedback').click(function (e) {
+        $('.feedback').attr('data-target', '#feedback');
+
+        $('.feedback').attr('data-toggle', 'modal');
+
+
+    });
+
+
+</script>

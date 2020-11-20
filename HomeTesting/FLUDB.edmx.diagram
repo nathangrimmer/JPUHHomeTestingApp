@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="21ec0e35169a4a4ba09104de739d6783" Name="Diagram1" ZoomLevel="56" >
+        <EntityTypeShape EntityType="FluJabModel.tbl_AssignmentStatus" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FluJabModel.tblStaff" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_Divisions" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_Departments" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_Professions" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_DeclinedReasons" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_Audit" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_StaffGroups" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_FacingGroups" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_HighRiskAreas" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_Vaccinators" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_AssignmentCats" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_VaccManus" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_VaccBatch" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="FluJabModel.tbl_HomeTesting" Width="1.5" PointX="9.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
